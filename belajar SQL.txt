@@ -1,0 +1,401 @@
+Microsoft Windows [Version 10.0.18363.900]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\User>mysql -u root
+'mysql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>C
+'C' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\User>D:
+
+D:\>C:
+
+C:\Users\User>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 24
+Server version: 10.4.8-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> help
+
+General information about MariaDB can be found at
+http://mariadb.org
+
+List of all client commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+ego       (\G) Send command to MariaDB server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to MariaDB server.
+help      (\h) Display this help.
+notee     (\t) Don't write into outfile.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+
+For server side help, type 'help contents'
+
+MariaDB [(none)]> quit
+Bye
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 57
+Server version: 10.4.8-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| myshop             |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use myshop;
+Database changed
+MariaDB [myshop]> SHOW TABLES;
+Empty set (0.001 sec)
+
+MariaDB [myshop]> CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225), email VARCHAR(225), password VARCHAR(225));
+Query OK, 0 rows affected (0.065 sec)
+
+MariaDB [myshop]> SHOW TABLES;
++------------------+
+| Tables_in_myshop |
++------------------+
+| users            |
++------------------+
+1 row in set (0.001 sec)
+
+MariaDB [myshop]> CREATE TABLE items(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225), description VARCHAR(225), price INT);
+Query OK, 0 rows affected (0.042 sec)
+
+MariaDB [myshop]> SHOW TABLES;
++------------------+
+| Tables_in_myshop |
++------------------+
+| items            |
+| users            |
++------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [myshop]> SHOW TABLES;
+ERROR 1049 (42000): Unknown database 'myshop'
+MariaDB [myshop]> CREATE DATABASE myshop;
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [myshop]> SHOW DATABASE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DATABASE' at line 1
+MariaDB [myshop]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| myshop             |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [myshop]> CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225), email VARCHAR(225), password VARCHAR(225));
+Query OK, 0 rows affected (0.036 sec)
+
+MariaDB [myshop]> SHOW TABLES;
++------------------+
+| Tables_in_myshop |
++------------------+
+| users            |
++------------------+
+1 row in set (0.000 sec)
+
+MariaDB [myshop]> CREATE TABLE items(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225), description VARCHAR(225), price INT);
+Query OK, 0 rows affected (0.038 sec)
+
+MariaDB [myshop]> SHOW TABLES;
++------------------+
+| Tables_in_myshop |
++------------------+
+| items            |
+| users            |
++------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [myshop]> CREATE TABLE categories(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225));
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [myshop]> SHOW TABLES;
++------------------+
+| Tables_in_myshop |
++------------------+
+| categories       |
+| items            |
+| users            |
++------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [myshop]> CREATE TABLE items(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(225), description VARCHAR(225), price INT, stock INT, category_id INT);
+Query OK, 0 rows affected (0.048 sec)
+
+MariaDB [myshop]> SHOW TABLES;
++------------------+
+| Tables_in_myshop |
++------------------+
+| categories       |
+| items            |
+| users            |
++------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [myshop]> CONSTRAINT id_pembeli FOREIGN KEY (id_pembeli) REFERENCES pembeli (id_pembeli)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CONSTRAINT id_pembeli FOREIGN KEY (id_pembeli) REFERENCES pembeli (id_pembeli)' at line 1
+MariaDB [myshop]> ALTER TABLE items ADD FOREIGN KEY(category_id) REFERENCES categories(id);
+Query OK, 0 rows affected (0.086 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [myshop]> INSERT INTO users (id, name, email, password) VALUES (NULL, 'John Doe', 'john@doe.com', 'john123');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [myshop]> INSERT INTO users (id, name, email, password) VALUES (NULL, 'Jane Doe', 'jane@doe.com', 'jenita123');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [myshop]> INSERT INTO categories (id, name) VALUES (NULL, 'gadget');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [myshop]> INSERT INTO categories (id, name) VALUES (NULL, 'cloth');
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [myshop]> INSERT INTO categories (id, name) VALUES (NULL, 'men');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [myshop]> INSERT INTO categories (id, name) VALUES (NULL, 'women');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [myshop]> INSERT INTO categories (id, name) VALUES (NULL, 'branded');
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [myshop]> INSERT INTO items
+    -> (NULL, 'Sumsang b50','hape keren dari merek sumsang', 4000000, 100, 1
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NULL, 'Sumsang b50','hape keren dari merek sumsang', 4000000, 100, 1' at line 2
+MariaDB [myshop]> INSERT INTO items VALUES
+    -> (NULL, 'Sumsang b50','hape keren dari merek sumsang', 4000000, 100, 1);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [myshop]> SELECT * FROM items;
++----+-------------+-------------------------------+---------+-------+-------------+
+| id | name        | description                   | price   | stock | category_id |
++----+-------------+-------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | hape keren dari merek sumsang | 4000000 |   100 |           1 |
++----+-------------+-------------------------------+---------+-------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [myshop]> INSERT INTO items VALUES
+    -> (NULL, 'Uniklooh', 'baju keren dari brand ternama', 500000, 50, 2),
+    -> (NULL, 'IMHO Watch', 'jam tangan anak yang jujur banget', 2000000, 10, 1),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3
+MariaDB [myshop]> INSERT INTO items VALUES
+    -> (NULL, 'Uniklooh', 'baju keren dari brand ternama', 500000, 50, 2),
+    -> (NULL, 'IMHO Watch', 'jam tangan anak yang jujur banget', 2000000, 10, 1);
+Query OK, 2 rows affected (0.004 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [myshop]> SELECT * FROM items;
++----+-------------+-----------------------------------+---------+-------+-------------+
+| id | name        | description                       | price   | stock | category_id |
++----+-------------+-----------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | hape keren dari merek sumsang     | 4000000 |   100 |           1 |
+|  2 | Uniklooh    | baju keren dari brand ternama     |  500000 |    50 |           2 |
+|  3 | IMHO Watch  | jam tangan anak yang jujur banget | 2000000 |    10 |           1 |
++----+-------------+-----------------------------------+---------+-------+-------------+
+3 rows in set (0.000 sec)
+
+MariaDB [myshop]> SELECT * FROM categories;
++----+---------+
+| id | name    |
++----+---------+
+|  1 | gadget  |
+|  2 | cloth   |
+|  3 | men     |
+|  4 | women   |
+|  5 | branded |
++----+---------+
+5 rows in set (0.000 sec)
+
+MariaDB [myshop]> SELECT * FROM users;
++----+----------+--------------+-----------+
+| id | name     | email        | password  |
++----+----------+--------------+-----------+
+|  1 | John Doe | john@doe.com | john123   |
+|  2 | Jane Doe | jane@doe.com | jenita123 |
++----+----------+--------------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [myshop]> SELECT id, name, email FROM users;
++----+----------+--------------+
+| id | name     | email        |
++----+----------+--------------+
+|  1 | John Doe | john@doe.com |
+|  2 | Jane Doe | jane@doe.com |
++----+----------+--------------+
+2 rows in set (0.001 sec)
+
+MariaDB [myshop]> SELECT * FROM items WHERE price>1000000;
++----+-------------+-----------------------------------+---------+-------+-------------+
+| id | name        | description                       | price   | stock | category_id |
++----+-------------+-----------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | hape keren dari merek sumsang     | 4000000 |   100 |           1 |
+|  3 | IMHO Watch  | jam tangan anak yang jujur banget | 2000000 |    10 |           1 |
++----+-------------+-----------------------------------+---------+-------+-------------+
+2 rows in set (0.000 sec)
+
+MariaDB [myshop]> SELECT * FROM items WHERE IN('watch');0
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IN('watch')' at line 1
+    -> SELECT * FROM items WHERE IN('watch');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '0
+SELECT * FROM items WHERE IN('watch')' at line 1
+MariaDB [myshop]> SELECT * FROM items WHERE IN('watch');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IN('watch')' at line 1
+MariaDB [myshop]> SELECT * FROM items WHERE name IN('watch');
+Empty set (0.000 sec)
+
+MariaDB [myshop]> SELECT * FROM items WHERE name IN('Uniklo');
+Empty set (0.000 sec)
+
+MariaDB [myshop]> SELECT * FROM items WHERE name LIKE %sang%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%sang%' at line 1
+MariaDB [myshop]> SELECT * FROM items WHERE name LIKE %'sang'%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '%'sang'%' at line 1
+MariaDB [myshop]> SELECT * FROM items WHERE name LIKE '%sang%';
++----+-------------+-------------------------------+---------+-------+-------------+
+| id | name        | description                   | price   | stock | category_id |
++----+-------------+-------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | hape keren dari merek sumsang | 4000000 |   100 |           1 |
++----+-------------+-------------------------------+---------+-------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [myshop]> SELECT name, description, price, stock, category_id, kategori FROM items RIGHT JOIN categories USING(name);
+ERROR 1054 (42S22): Unknown column 'kategori' in 'field list'
+MariaDB [myshop]> SELECT name, description, price, stock, category_id FROM items RIGHT JOIN categories USING(name);
++---------+-------------+-------+-------+-------------+
+| name    | description | price | stock | category_id |
++---------+-------------+-------+-------+-------------+
+| gadget  | NULL        |  NULL |  NULL |        NULL |
+| cloth   | NULL        |  NULL |  NULL |        NULL |
+| men     | NULL        |  NULL |  NULL |        NULL |
+| women   | NULL        |  NULL |  NULL |        NULL |
+| branded | NULL        |  NULL |  NULL |        NULL |
++---------+-------------+-------+-------+-------------+
+5 rows in set (0.002 sec)
+
+MariaDB [myshop]> SELECT * FROM items;
++----+-------------+-----------------------------------+---------+-------+-------------+
+| id | name        | description                       | price   | stock | category_id |
++----+-------------+-----------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | hape keren dari merek sumsang     | 4000000 |   100 |           1 |
+|  2 | Uniklooh    | baju keren dari brand ternama     |  500000 |    50 |           2 |
+|  3 | IMHO Watch  | jam tangan anak yang jujur banget | 2000000 |    10 |           1 |
++----+-------------+-----------------------------------+---------+-------+-------------+
+3 rows in set (0.000 sec)
+
+MariaDB [myshop]> SELECT name, description, price, stock, category_id, id FROM items RIGHT JOIN categories USING(id);
+ERROR 1052 (23000): Column 'name' in field list is ambiguous
+MariaDB [myshop]> SELECT name, description, price, stock, category_id, id FROM items RIGHT JOIN categories USING(name);
+ERROR 1052 (23000): Column 'id' in field list is ambiguous
+MariaDB [myshop]> SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name AS kategori FROM INNER JOIN categories on items.category_id=categories.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INNER JOIN categories on items.category_id=categories.id' at line 1
+MariaDB [myshop]> SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name AS kategori from inner join categories on items.category_id=categories.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'inner join categories on items.category_id=categories.id' at line 1
+MariaDB [myshop]> SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name  from inner join categories on items.category_id=categories.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'inner join categories on items.category_id=categories.id' at line 1
+MariaDB [myshop]> SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name  from inner join categories on items.category_id=categories.id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'inner join categories on items.category_id=categories.id' at line 1
+MariaDB [myshop]> SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name AS kategori FROM items INNER JOIN categories on items.category_id=categories.id;
++-------------+-----------------------------------+---------+-------+-------------+----------+
+| name        | description                       | price   | stock | category_id | kategori |
++-------------+-----------------------------------+---------+-------+-------------+----------+
+| Sumsang b50 | hape keren dari merek sumsang     | 4000000 |   100 |           1 | gadget   |
+| Uniklooh    | baju keren dari brand ternama     |  500000 |    50 |           2 | cloth    |
+| IMHO Watch  | jam tangan anak yang jujur banget | 2000000 |    10 |           1 | gadget   |
++-------------+-----------------------------------+---------+-------+-------------+----------+
+3 rows in set (0.001 sec)
+
+MariaDB [myshop]> UPDATE items SET price=2500000 WHERE id=1;
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [myshop]> SELECT * FROM items;
++----+-------------+-----------------------------------+---------+-------+-------------+
+| id | name        | description                       | price   | stock | category_id |
++----+-------------+-----------------------------------+---------+-------+-------------+
+|  1 | Sumsang b50 | hape keren dari merek sumsang     | 2500000 |   100 |           1 |
+|  2 | Uniklooh    | baju keren dari brand ternama     |  500000 |    50 |           2 |
+|  3 | IMHO Watch  | jam tangan anak yang jujur banget | 2000000 |    10 |           1 |
++----+-------------+-----------------------------------+---------+-------+-------------+
+3 rows in set (0.000 sec)
+
+MariaDB [myshop]> help
+
+General information about MariaDB can be found at
+http://mariadb.org
+
+List of all client commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+ego       (\G) Send command to MariaDB server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to MariaDB server.
+help      (\h) Display this help.
+notee     (\t) Don't write into outfile.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+
+For server side help, type 'help contents'
+
+MariaDB [myshop]> quit
+Bye
+
+C:\xampp\mysql\bin>
